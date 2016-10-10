@@ -1,0 +1,43 @@
+extends ../shared/layout
+block main-content
+    .container
+        .row
+            .col-md-6.col-md-offset-3
+                h1.text-center TEAMS
+                if (teamCountry!=0)
+                    h2 #{teamCountry}
+                br
+                //form(method="get")
+                //    input(id="page" value="#{page}" class="form-control" type="hidden" name="page" )
+                //    input(id="pageSize" value="#{pageSize}" class="form-control" type="hidden" name="pageSize" )
+                //
+                //    label(for="teamCountry") Country
+                //        select(id="teamCountry" class="form-control" name="teamCountry")
+                //            option(value=0) Select Country
+                //            each country in countrys
+                //                option(value="#{country}" ) #{country}
+                //        br
+                //    input(type="submit" class="btn btn-lg" value="Sort")
+                //br
+                table.table-bordered.table
+                    tr
+                        th Image
+                        th TeamId
+
+                    each image in images
+                        tr
+                            td  #{image.imageName}
+                                //img(src='#{team.image}')
+                            td #{image.teamId}
+                            //td #{team.teamCountry}
+                            //td
+                            //    a.btn.btn-lg.btn-primary(href="/teams/edit/#{team._id}") Edit
+                            //td
+                            //    a.btn.btn-lg.btn-primary(href="/teams/delete/#{team._id}") Delete
+                            //td
+                            //    a.btn.btn-lg.btn-primary(href="/upload/#{team._id}") Upload Picture
+                br
+                //ul.list-unstyled.list-inline.text-center
+                //    - for(var i = 1; i <= (totalTeams / pageSize)+1; i++)
+                //    li
+                //        a.btn.btn-lf.btn-primary(href="/teams?page=#{i}&pageSize=#{pageSize}") #{i}

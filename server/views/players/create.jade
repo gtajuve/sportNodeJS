@@ -1,0 +1,30 @@
+extends ../shared/layout
+
+block main-content
+    form(method="post")
+        label(for="firstName") First Name
+        input(id="firstName"  class="form-control" type="text" name="firstName" placeholder="firstName")
+        br
+        label(for="lastName") Last Name
+        input(id="lastName"  class="form-control" type="text" name="lastName" placeholder="lastName")
+        br
+        label(for="image") Image
+        input(id="image" value="" class="form-control" type="text" name="image" placeholder="Image")
+        br
+
+        label(for="playerCountry") Country
+            select(id="playerCountry" class="form-control" name="playerCountry")
+                each country in countrys
+                    option(value="#{country}") #{country}
+            br
+        label(for="position") Position
+            select(id="position" class="form-control" name="position")
+                each position in positions
+                    option(value="#{position}") #{position}
+            br
+        label(for="playerTeam") Team
+            select(id="playerTeam" class="form-control" name="playerTeam")
+                each team in teams
+                    option(value="#{team.teamname}") #{team.teamname}
+            br
+        input(type="submit" class="btn btn-lg" value="Create")

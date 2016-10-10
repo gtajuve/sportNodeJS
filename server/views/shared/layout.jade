@@ -1,0 +1,47 @@
+doctype
+html
+    head
+        title Soccer DataBase
+        link(rel="stylesheet" href="/lib/bootstrap-3.2.0/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/css/site.css")
+    body
+        header.nav
+        .container
+            .navbar-header
+                a.navbar-brand(href="/") Soccer Database
+            .navbar-collapse.collapse
+                ul.nav.navbar-nav
+                    li
+                        a(href="/") Home
+                    if (currentUser)
+                        li
+                            a(href="/teams/create") Create Team
+                        li
+                            a(href="/teams") Teams
+                        li
+                            a(href="/players/create") Create Player
+                        li
+                            a(href="/players")  Players
+                        li
+                            a(href="/pictures")  Pictures
+                        li
+                            a(href="/profile") #{currentUser.username}
+                        li
+                            a(href="/logout") Logout
+                    if (!currentUser)
+                        li
+                            a(href="/register") Register
+                        li
+                            a(href="/login") Login
+
+        .container
+            if (errorMessage)
+                .alert.alert-danger #{errorMessage}
+
+            block main-content
+
+        footer
+
+
+
+        include scripts

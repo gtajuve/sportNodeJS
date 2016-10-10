@@ -1,0 +1,18 @@
+extends ../shared/layout
+
+block main-content
+    form(method="post")
+        //input(id="id" value="#{team._id}" class="form-control" type="hidden" name="id" )
+        //
+        label(for="teamname") Teamname
+        input(id="teamname" value="#{team.teamname}" class="form-control" type="text" name="teamname" placeholder="TeamName")
+        br
+        label(for="image") Image
+        input(id="image" value="#{team.image}" class="form-control" type="text" name="image" placeholder="Image")
+        br
+        label(for="teamCountry") Country
+            select(id="teamCountry" class="form-control" name="teamCountry")
+                each country in countrys
+                    option(value="#{country}") #{country}
+            br
+        input(type="submit" class="btn btn-lg" value="Edit")

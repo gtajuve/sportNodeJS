@@ -1,0 +1,60 @@
+extends ../shared/layout
+block main-content
+    .container
+        .row
+            .col-md-6.col-md-offset-3
+                h1.text-center PLAYERS
+                //if (teamCountry!=0)
+                //    h2 #{teamCountry}
+                br
+                form(method="get")
+                    input(id="page" value=1 class="form-control" type="hidden" name="page" )
+                    input(id="pageSize" value="#{pageSize}" class="form-control" type="hidden" name="pageSize" )
+
+                    label(for="playerCountry") Country
+                        select(id="playerCountry" class="form-control" name="playerCountry")
+                            option(value=0) Select Country
+                            each country in countrys
+                                - selected = playerCountry==country?'selected':'';
+                                option(value="#{country}" ) #{country}
+                        br
+                    label(for="playerTeams") Teams
+                        select(id="playerTeams" class="form-control" name="playerTeams")
+                            option(value=0) Select Team
+                            each team in teams
+                                option(value="#{team.teamname}" ) #{team.teamname}
+                        br
+                    label(for="position") Position
+                        select(id="position" class="form-control" name="position")
+                            option(value=0) Select Team
+                            each position in positions
+                                option(value="#{position}" ) #{position}
+                        br
+                    input(type="submit" class="btn btn-lg" value="Sort")
+                br
+                table.table-bordered.table
+                    tr
+                        th Image
+                        th PlayerName
+                        th Position
+                        th Nationality
+                        th Team
+                        th Edit
+                        th Delete
+                    each player in players
+                        tr
+                            td
+                                img(src='#{player.image}')
+                            td #{player.firstName} #{player.lastName}
+                            td #{player.position}
+                            td #{player.playerCountry}
+                            td #{player.playerTeam}
+                            td
+                                a.btn.btn-lg.btn-primary(href="/players/edit/#{player._id}") Edit
+                            td
+                                a.btn.btn-lg.btn-primary(href="/players/delete/#{player._id}") Delete
+                br
+                ul.list-unstyled.list-inline.text-center
+                    - for(var i = 1; i <= (totalPlayers / pageSize)+1; i++)
+                        li
+                            a.btn.btn-lf.btn-primary(href="/players?page=#{i}&pageSize=#{pageSize}") #{i}
